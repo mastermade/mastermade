@@ -2,3 +2,5 @@
 ----------------------------------------------------
 
 This repository stores the basic outlines for various personal Habari sites. Each site is in its own branch and most depend heavily on submodules to function.
+
+Remember to [code]git submodule init; git submodule update[/code]
