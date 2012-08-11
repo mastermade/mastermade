@@ -1,3 +1,6 @@
 [submodule "system"]
 	path = system
 	url = https://github.com/habari/system.git
+[submodule "user/plugins/jambo"]
+	path = user/plugins/jambo
+	url = git@github.com:habari-extras/jambo.git
