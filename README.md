@@ -10,3 +10,4 @@ git submodule update
 
 ## Sites
 * [Heph](https://github.com/morgante/personal/tree/heph) - powers http://morgante.net
+* [Hera](https://github.com/morgante/personal/tree/hera) - powers http://lab.morgante.net
