@@ -13,3 +13,6 @@
 [submodule "user/plugins/virtus"]
 	path = user/plugins/virtus
 	url = https://github.com/morgante/virtus.git
+[submodule "user/themes/scientist"]
+	path = user/themes/scientist
+	url = https://github.com/habari-extras/scientist.git
