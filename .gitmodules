@@ -16,3 +16,6 @@
 [submodule "user/themes/scientist"]
 	path = user/themes/scientist
 	url = https://github.com/habari-extras/scientist.git
+[submodule "user/plugins/habaribox"]
+	path = user/plugins/habaribox
+	url = https://github.com/habari-extras/habaribox.git
