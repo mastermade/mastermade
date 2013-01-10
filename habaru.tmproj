@@ -33,6 +33,8 @@
 			<string>system</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>user</string>
 			<key>regexFolderFilter</key>
@@ -48,6 +50,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 4}, {1710, 1174}}</string>
+	<string>{{203, 4}, {1227, 874}}</string>
 </dict>
 </plist>
