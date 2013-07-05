@@ -1,1 +1,4 @@
 .htaccess
+user/cache
+user/habari.db
+.php-version
