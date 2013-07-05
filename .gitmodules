@@ -19,3 +19,6 @@
 [submodule "user/plugins/habaribox"]
 	path = user/plugins/habaribox
 	url = https://github.com/habari-extras/habaribox.git
+[submodule "user/plugins/workr"]
+	path = user/plugins/workr
+	url = https://github.com/morgante/workr.git
