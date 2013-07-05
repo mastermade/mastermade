@@ -29,9 +29,13 @@ class InterMade extends Theme
 				}
 			}
 		}
+		else
+		{
+		    return;
+		}
 
 		$title = false;
-		
+				
 		switch( $request )
 		{
 			case 'display_post':
