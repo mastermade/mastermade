@@ -22,3 +22,6 @@
 [submodule "user/plugins/workr"]
 	path = user/plugins/workr
 	url = https://github.com/morgante/workr.git
+[submodule "user/plugins/pompous"]
+	path = user/plugins/pompous
+	url = https://github.com/morgante/pompous.git
