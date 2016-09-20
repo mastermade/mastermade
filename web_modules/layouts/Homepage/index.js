@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Page from '../Page';
 
 const isBrowser = typeof window !== 'undefined';
-const Grid = isBrowser ? require('../../gridgame/Grid') : null;
+const Grid = isBrowser ? require('../../gridgame/Grid').default : null;
 
 class Homepage extends Component {
   static contextTypes = {
