@@ -5,6 +5,7 @@
   ],
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
+    "no-unused-vars": [0],
     "prefer-template": [0],
     "quote-props": ["error", "consistent"],
     "no-underscore-dangle": ["error", { "allow": ["__INITIAL_STATE__", "__COLLECTION__"]}],

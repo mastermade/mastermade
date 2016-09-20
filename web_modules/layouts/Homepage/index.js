@@ -13,8 +13,6 @@ class Homepage extends Component {
   render() {
     const { body } = this.props;
 
-    console.log('props', this.props);
-
     return (
       <Page {...this.props}>
         <BodyContainer>{ body }</BodyContainer>
@@ -28,10 +26,4 @@ Homepage.propTypes = {
   body: PropTypes.string.isRequired,
 };
 
-export default connect(
-  (state) => {
-    return {
-      visibility: state.visibility,
-    };
-  }
-)(Homepage);
+export default Homepage;

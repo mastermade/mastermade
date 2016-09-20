@@ -1,1 +1,1 @@
-export visibility from './visibility';
+export gridgame from './gridgame';
