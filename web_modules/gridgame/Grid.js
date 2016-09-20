@@ -5,7 +5,7 @@ import ReactCanvas from 'react-canvas';
 import * as _ from 'lodash';
 import { connect } from 'react-redux';
 
-import { step } from 'app/actions/gridgame';
+import { step, setHoverCell } from 'app/actions/gridgame';
 
 const Surface = ReactCanvas.Surface;
 const Gradient = ReactCanvas.Gradient;
@@ -14,7 +14,14 @@ class Grid extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     game: PropTypes.object,
+    cellSize: PropTypes.number,
   };
+
+  getDefaultProps() {
+    return {
+      cellSize: 10,
+    };
+  }
 
   componentDidMount() {
     let start;
@@ -35,32 +42,67 @@ class Grid extends Component {
     window.cancelAnimationFrame(this.frame);
   }
 
+  getCellStyle(cell) {
+    const { cellSize } = this.props;
+
+    return {
+      left: 1 + (cell[0] * cellSize),
+      top: 1 + (cell[1] * cellSize),
+      width: cellSize - 1,
+      height: cellSize - 1,
+      borderWidth: 1,
+    };
+  }
+
+  getHoverStyle(cell) {
+    const baseStyle = this.getCellStyle(cell);
+
+    const hoverStyle = {
+      ...baseStyle,
+      left: baseStyle.left - 0.5,
+      top: baseStyle.top - 0.5,
+      width: baseStyle.width + 1,
+      height: baseStyle.height + 1,
+      borderColor: 'red',
+    };
+
+    return hoverStyle;
+  }
+
+  buildHoverGrid() {
+    const { game: { hover }, cellSize } = this.props;
+
+    const hoverStyle = this.getHoverStyle(hover);
+
+    return (<Gradient style={hoverStyle} />);
+  }
+
   render() {
-    const { game: { cells } } = this.props;
+    const { game: { cells, hover }, cellSize, dispatch } = this.props;
 
     const boxes = _.map(cells, (cell) => {
       const style = {
-        left: 5 + (cell[0] * 10),
-        top: 5 + (cell[1] * 10),
-        width: 9,
-        height: 9,
+        ...this.getCellStyle(cell),
         backgroundColor: '#333333',
       };
 
       return (<Gradient style={style} />);
     });
 
+    const hoverEffect = hover ? this.buildHoverGrid() : null;
+
     const mouseMove = (evt) => {
       const rect = evt.target.getBoundingClientRect();
-      const x = evt.clientX - rect.left;
-      const y = evt.clientY - rect.top;
-      // console.log('mouse move', evt, x, y);
+      const x = Math.floor((evt.clientX - rect.left) / cellSize);
+      const y = Math.floor((evt.clientY - rect.top) / cellSize);
+      dispatch(setHoverCell(x, y));
     };
 
     return (
       <div onMouseMove={mouseMove}>
         <Surface top={0} left={0} width={5000} height={5000}>
           { boxes }
+          { hoverEffect }
         </Surface>
       </div>
     );

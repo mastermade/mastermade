@@ -9,6 +9,7 @@ const defaultState = {
           [19, 3], [19, 4], [19, 5],
           [3, 13], [3, 14], [3, 15],
           [3, 33], [3, 34], [3, 35]],
+  hover: null,
 };
 
 function getKey(cell) {
@@ -16,6 +17,12 @@ function getKey(cell) {
 }
 
 const actions = {
+  'GAME_HOVER': (state, action) => {
+    return {
+      ...state,
+      hover: [action.x, action.y],
+    };
+  },
   'GAME_STEP': (state, action) => {
     const cells = {};
     const liveCells = {};

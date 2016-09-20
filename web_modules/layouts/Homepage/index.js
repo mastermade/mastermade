@@ -16,7 +16,7 @@ class Homepage extends Component {
     return (
       <Page {...this.props}>
         <BodyContainer>{ body }</BodyContainer>
-        <Grid />
+        <Grid cellSize={10} />
       </Page>
     );
   }
