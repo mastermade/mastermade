@@ -7,22 +7,33 @@ const Gradient = ReactCanvas.Gradient;
 
 class Grid extends Component {
   render() {
-    const boxes = _.times(1500, (n) => {
-      const style = {
-        top: n * 3,
-        left: 10,
-        width: 20,
-        height: 2,
-        backgroundColor: '#333333',
-      };
+    const boxes = _.flatten(_.times(10, (i) => {
+      return _.times(10, (n) => {
+        const style = {
+          top: 5 + (n * 4),
+          left: 5 + (i * 4),
+          width: 3,
+          height: 3,
+          borderColor: '#333333',
+        };
 
-      return (<Gradient style={style} />);
-    });
+        return (<Gradient style={style} />);
+      });
+    }));
+
+    const mouseMove = (evt) => {
+      const rect = evt.target.getBoundingClientRect();
+      const x = evt.clientX - rect.left;
+      const y = evt.clientY - rect.top;
+      console.log('mouse move', evt, x, y);
+    };
 
     return (
-      <Surface top={0} left={0} width={500} height={5000}>
-        { boxes }
-      </Surface>
+      <div onMouseMove={mouseMove}>
+        <Surface top={0} left={0} width={5000} height={5000}>
+          { boxes }
+        </Surface>
+      </div>
     );
   }
 }
