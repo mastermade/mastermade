@@ -124,7 +124,10 @@ export const makeConfig = (config = {}) => {
         }
       ],
       postLoaders: [
-        { loader: "transform?brfs" }
+        {
+          test: /node_modules\/linebreak/,
+          loader: "ify"
+        }
       ]
     },
 
