@@ -1,0 +1,12 @@
+test:
+  override:
+    - echo 'all good'
+  post:
+    - git config --global user.email "bots@mastermade.us"
+    - git config --global user.name "mastermade"
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - npm run deploy
