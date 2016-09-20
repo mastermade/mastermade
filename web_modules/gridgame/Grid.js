@@ -72,12 +72,13 @@ class Grid extends Component {
   buildHoverGrid() {
     const { game: { hover }, cellSize, hoverOut } = this.props;
 
-    const hoverCells = [];
+    let hoverCells = [];
 
     for (let x = hover[0] - hoverOut; x <= hover[0] + hoverOut; x += 1) {
       for (let y = hover[1] - hoverOut; y <= hover[1] + hoverOut; y += 1) {
         if (x >= 0 && y >= 0) {
-          const level = Math.max(Math.abs(x - hover[0]), Math.abs(y - hover[1]));
+          const level = Math.sqrt(Math.pow((x - hover[0]), 2) +
+                                  Math.pow((y - hover[1]), 2));
           hoverCells.push({
             cell: [x, y],
             level,
@@ -86,9 +87,11 @@ class Grid extends Component {
       }
     }
 
+    hoverCells = _.reverse(_.sortBy(hoverCells, 'level'));
+
     const hoverBoxes = _.map(hoverCells, (cell) => {
       const scale = chroma.scale(['red', '#ffffff'])
-        .domain([0, hoverOut])
+        .domain([0, hoverOut + 1])
         .mode('lab');
       const style = {
         ...this.getBorderStyle(cell.cell),
