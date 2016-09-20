@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import styles from './index.css';
 
 export default class Footer extends Component {
-  static render() {
+  render() {
     return (
       <footer className={styles.footer}>
         <a

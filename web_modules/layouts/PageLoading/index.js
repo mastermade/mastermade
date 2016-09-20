@@ -13,7 +13,7 @@ TopBarProgressIndicator.config({
 });
 
 export default class PageLoading extends Component {
-  static render() {
+  render() {
     return (
       <div>
         <Helmet

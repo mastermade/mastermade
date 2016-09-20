@@ -45,7 +45,7 @@ export const makeConfig = (config = {}) => {
               ? '?cacheDirectory=true&presets[]=babel-preset-react-hmre'
               : '?cacheDirectory=true'
             }`,
-            'eslint-loader?fix',
+            'eslint-loader?fix'
           ],
           include: [
             path.resolve(__dirname, 'scripts'),
@@ -121,8 +121,11 @@ export const makeConfig = (config = {}) => {
         {
           test: /\.svg$/,
           loader: 'raw-loader',
-        },
+        }
       ],
+      postLoaders: [
+        { loader: "transform?brfs" }
+      ]
     },
 
     phenomic: {
