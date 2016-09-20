@@ -1,9 +1,7 @@
 machine:
   node:
     version: 4.0.0
-
-dependencies:
-  pre:
+  post:
     - npm install -g npm@3.x.x
 
 test:
