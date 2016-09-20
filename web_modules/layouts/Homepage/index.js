@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from "react"
-import { BodyContainer } from "phenomic"
+import React, { Component, PropTypes } from 'react';
+import { BodyContainer } from 'phenomic';
 
-import Page from "../Page"
+import Page from '../Page';
 
 class Homepage extends Component {
   static contextTypes = {
@@ -9,18 +9,18 @@ class Homepage extends Component {
   }
 
   render() {
-    const { body } = this.props
+    const { body } = this.props;
 
     return (
-      <Page { ...this.props }>
+      <Page {...this.props}>
         <BodyContainer>{ body }</BodyContainer>
       </Page>
-    )
+    );
   }
 }
 
 Homepage.propTypes = {
   body: PropTypes.string.isRequired,
-}
+};
 
-export default Homepage
+export default Homepage;

@@ -1,29 +1,29 @@
-import React, { Component, PropTypes } from "react"
-import styles from "./index.css"
+import React, { Component, PropTypes } from 'react';
+import styles from './index.css';
 
 export default class PageError extends Component {
 
   static propTypes = {
-    error: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+    error: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     errorText: PropTypes.string,
   };
 
   static defaultProps = {
     error: 404,
-    errorText: "Page Not Found",
+    errorText: 'Page Not Found',
   };
 
   render() {
     const {
       error,
       errorText,
-    } = this.props
+    } = this.props;
 
     return (
-      <div className={ styles.container }>
-        <div className={ styles.oops }>{ "😱 Oooops!" }</div>
-        <div className={ styles.text }>
-          <p className={ styles.title }>
+      <div className={styles.container}>
+        <div className={styles.oops}>{ "😱 Oooops!" }</div>
+        <div className={styles.text}>
+          <p className={styles.title}>
             <strong>{ error }</strong>
             { " " }
             { errorText }
@@ -39,6 +39,6 @@ export default class PageError extends Component {
           }
         </div>
       </div>
-    )
+    );
   }
 }
