@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "mastermade",
-  "homepage": "http://mastermade.us",
+  "homepage": "http://www.mastermade.us",
   "twitter": "",
   "repository": "https://github.com/mastermade/mastermade.git",
   "scripts": {
@@ -11,7 +11,8 @@
     "start": "phenomic start",
     "build": "phenomic build",
     "pretest": "npm run lint",
-    "test": "npm run build"
+    "test": "npm run build",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "phenomic": {
     "CNAME": true
