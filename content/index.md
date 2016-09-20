@@ -1,6 +1,6 @@
 ---
-title: Welcome page is welcoming
+title: MasterMade Technology Corporation
 layout: Homepage
 ---
 
-Welcome to MasterMade.
+Welcome to MasterMade. Let the games begin.
