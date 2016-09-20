@@ -4,10 +4,37 @@ export function step() {
   };
 }
 
-export function setHoverCell(x, y) {
+export function setHoverCell(cell) {
   return {
     type: 'GAME_HOVER',
-    x,
-    y,
+    cell,
   };
 }
+
+export function addLiveCell(cell) {
+  return {
+    type: 'ADD_LIVE_CELL',
+    cell,
+  };
+}
+
+export function setCursorDown(cell) {
+  return {
+    type: 'SET_CURSOR_DOWN',
+    cell,
+  };
+}
+
+export function setCursorUp() {
+  return {
+    type: 'SET_CURSOR_UP',
+  };
+}
+
+export function moveCursor(cell) {
+  return {
+    type: 'MOVE_CURSOR',
+    cell,
+  };
+}
+

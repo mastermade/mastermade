@@ -10,6 +10,7 @@ const defaultState = {
           [3, 13], [3, 14], [3, 15],
           [3, 33], [3, 34], [3, 35]],
   hover: null,
+  down: false,
 };
 
 function getKey(cell) {
@@ -17,10 +18,29 @@ function getKey(cell) {
 }
 
 const actions = {
-  'GAME_HOVER': (state, action) => {
+  'ADD_LIVE_CELL': (state, action) => {
     return {
       ...state,
-      hover: [action.x, action.y],
+      cells: _.uniq([...state.cells, action.cell]),
+    };
+  },
+  'MOVE_CURSOR': (state, action) => {
+    const addState = state.down ? actions.ADD_LIVE_CELL(state, action) : state;
+    return {
+      ...addState,
+      hover: action.cell,
+    };
+  },
+  'SET_CURSOR_DOWN': (state, action) => {
+    return {
+      ...actions.ADD_LIVE_CELL(state, action),
+      down: true,
+    };
+  },
+  'SET_CURSOR_UP': (state, action) => {
+    return {
+      ...state,
+      down: false,
     };
   },
   'GAME_STEP': (state, action) => {

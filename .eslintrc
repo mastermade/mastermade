@@ -5,6 +5,7 @@
   ],
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
+    "new-cap": [0],
     "no-unused-vars": [0],
     "prefer-template": [0],
     "quote-props": ["error", "consistent"],

@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import chroma from 'chroma-js';
 
-import { step, setHoverCell } from 'app/actions/gridgame';
+import { step, setCursorDown, moveCursor, setCursorUp } from 'app/actions/gridgame';
 
 const Surface = ReactCanvas.Surface;
 const Gradient = ReactCanvas.Gradient;
@@ -69,6 +69,16 @@ class Grid extends Component {
     return borderStyle;
   }
 
+  getEventCell(evt) {
+    const { cellSize } = this.props;
+
+    const rect = evt.target.getBoundingClientRect();
+    const x = Math.floor((evt.clientX - rect.left) / cellSize);
+    const y = Math.floor((evt.clientY - rect.top) / cellSize);
+
+    return [x, y];
+  }
+
   buildHoverGrid() {
     const { game: { hover }, cellSize, hoverOut } = this.props;
 
@@ -119,14 +129,19 @@ class Grid extends Component {
     const hoverEffect = hover ? this.buildHoverGrid() : null;
 
     const mouseMove = (evt) => {
-      const rect = evt.target.getBoundingClientRect();
-      const x = Math.floor((evt.clientX - rect.left) / cellSize);
-      const y = Math.floor((evt.clientY - rect.top) / cellSize);
-      dispatch(setHoverCell(x, y));
+      dispatch(moveCursor(this.getEventCell(evt)));
+    };
+
+    const mouseDownHandler = (evt) => {
+      dispatch(setCursorDown(this.getEventCell(evt)));
+    };
+
+    const mouseUpHandler = (evt) => {
+      dispatch(setCursorUp());
     };
 
     return (
-      <div onMouseMove={mouseMove}>
+      <div onMouseMove={mouseMove} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler}>
         <Surface top={0} left={0} width={5000} height={5000}>
           { boxes }
           { hoverEffect }
