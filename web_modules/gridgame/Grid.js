@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
 /* eslint-env browser */
 
+import React, { Component, PropTypes } from 'react';
 import ReactCanvas from 'react-canvas';
 import * as _ from 'lodash';
 import { connect } from 'react-redux';
+import chroma from 'chroma-js';
 
 import { step, setHoverCell } from 'app/actions/gridgame';
 
@@ -15,13 +16,13 @@ class Grid extends Component {
     dispatch: PropTypes.func,
     game: PropTypes.object,
     cellSize: PropTypes.number,
+    hoverOut: PropTypes.number,
   };
 
-  getDefaultProps() {
-    return {
-      cellSize: 10,
-    };
-  }
+  static defaultProps = {
+    cellSize: 10,
+    hoverOut: 2,
+  };
 
   componentDidMount() {
     let start;
@@ -54,27 +55,50 @@ class Grid extends Component {
     };
   }
 
-  getHoverStyle(cell) {
+  getBorderStyle(cell) {
     const baseStyle = this.getCellStyle(cell);
 
-    const hoverStyle = {
+    const borderStyle = {
       ...baseStyle,
       left: baseStyle.left - 0.5,
       top: baseStyle.top - 0.5,
       width: baseStyle.width + 1,
       height: baseStyle.height + 1,
-      borderColor: 'red',
     };
 
-    return hoverStyle;
+    return borderStyle;
   }
 
   buildHoverGrid() {
-    const { game: { hover }, cellSize } = this.props;
+    const { game: { hover }, cellSize, hoverOut } = this.props;
 
-    const hoverStyle = this.getHoverStyle(hover);
+    const hoverCells = [];
 
-    return (<Gradient style={hoverStyle} />);
+    for (let x = hover[0] - hoverOut; x <= hover[0] + hoverOut; x += 1) {
+      for (let y = hover[1] - hoverOut; y <= hover[1] + hoverOut; y += 1) {
+        if (x >= 0 && y >= 0) {
+          const level = Math.max(Math.abs(x - hover[0]), Math.abs(y - hover[1]));
+          hoverCells.push({
+            cell: [x, y],
+            level,
+          });
+        }
+      }
+    }
+
+    const hoverBoxes = _.map(hoverCells, (cell) => {
+      const scale = chroma.scale(['red', '#ffffff'])
+        .domain([0, hoverOut])
+        .mode('lab');
+      const style = {
+        ...this.getBorderStyle(cell.cell),
+        borderColor: scale(cell.level),
+      };
+
+      return (<Gradient style={style} />);
+    });
+
+    return hoverBoxes;
   }
 
   render() {

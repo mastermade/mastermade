@@ -44,6 +44,7 @@
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-1": "^6.3.13",
     "brfs": "^1.4.3",
+    "chroma-js": "^1.2.1",
     "css-loader": "^0.23.0",
     "eslint": "3.5.x",
     "eslint-config-airbnb": "^11.1.0",
