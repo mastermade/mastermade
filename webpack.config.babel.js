@@ -59,7 +59,7 @@ export const makeConfig = (config = {}) => {
 
         // *.css => CSS Modules
         {
-          test: /\.css$/,
+          test: /\.(scss|css)$/,
           exclude: /\.global\.css$/,
           include: path.resolve(__dirname, 'web_modules'),
           loader: ExtractTextPlugin.extract(
@@ -70,6 +70,7 @@ export const makeConfig = (config = {}) => {
                 : '[path][name]--[local]--[hash:base64:5]'
               }`,
               'postcss-loader',
+              'sass-loader'
             ].join('!'),
           ),
         },
@@ -152,7 +153,7 @@ export const makeConfig = (config = {}) => {
     },
 
     postcss: () => [
-      require('stylelint')(),
+      // require('stylelint')(),
       require('postcss-cssnext')({ browsers: 'last 2 versions' }),
       require('postcss-reporter')(),
       ...!config.production ? [

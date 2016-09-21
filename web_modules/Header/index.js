@@ -18,39 +18,6 @@ export default class Header extends Component {
       pkg,
     } = this.context.metadata;
 
-    return (
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <div className={styles.navPart1}>
-            <Link
-              className={styles.link}
-              to="/"
-            >
-              { "Home" }
-            </Link>
-          </div>
-          <div className={styles.navPart2}>
-            { pkg.twitter &&
-              <a
-                href={`https://twitter.com/${pkg.twitter}`}
-                className={styles.link}
-              >
-                <Svg svg={twitterSvg} />
-                  { "Twitter" }
-              </a>
-            }
-            { pkg.repository &&
-              <a
-                href={pkg.repository}
-                className={styles.link}
-              >
-                <Svg svg={gitHubSvg} />
-                { "GitHub" }
-              </a>
-            }
-          </div>
-        </nav>
-      </header>
-    );
+    return null;
   }
 }

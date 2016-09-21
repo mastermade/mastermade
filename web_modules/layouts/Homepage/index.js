@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { BodyContainer } from 'phenomic';
 import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import Page from '../Page';
+
+import styles from './style.scss';
 
 const isBrowser = typeof window !== 'undefined';
 const Grid = isBrowser ? require('../../gridgame/Grid').default : null;
@@ -19,8 +22,14 @@ class Homepage extends Component {
 
     return (
       <Page {...this.props}>
-        <BodyContainer>{ body }</BodyContainer>
-        {background}
+        <div className={styles.tilepage}>
+          <div className={styles.home}>MasterMade</div>
+          <div className={styles.navigation}>
+            <div className={styles.about}>About</div>
+            <div className={styles.services}>Services</div>
+            <div className={styles.portfolio}>Portfolio</div>
+          </div>
+        </div>
       </Page>
     );
   }
