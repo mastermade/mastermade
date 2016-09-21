@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Link from 'phenomic/lib/Link';
 
 // Import global CSS before other components and their styles
 import './index.global.css';
@@ -29,6 +30,8 @@ export default class Layout extends Component {
       pkg,
     } = this.context.metadata;
 
+    console.log('context', this.context, this.props);
+
     return (
       <MuiThemeProvider>
         <div className={styles.tile}>
@@ -54,8 +57,15 @@ export default class Layout extends Component {
           />
           <style>{ "@-ms-viewport { width: device-width; }" }</style>
 
-          <div className={styles.content}>
-            { this.props.children }
+          <div className={styles.tilepage}>
+            <div className={styles.home}>MasterMade</div>
+            <div className={styles.navigation}>
+              <div className={styles.about}>
+               <Link to={"/about/"}>About</Link>
+              </div>
+              <div className={styles.services}>Services</div>
+              <div className={styles.portfolio}>Portfolio</div>
+            </div>
           </div>
       </div>
       </MuiThemeProvider>

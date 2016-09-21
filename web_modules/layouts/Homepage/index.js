@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { BodyContainer } from 'phenomic';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
+import Link from 'phenomic/lib/Link';
 
 import Page from '../Page';
 
@@ -22,14 +23,7 @@ class Homepage extends Component {
 
     return (
       <Page {...this.props}>
-        <div className={styles.tilepage}>
-          <div className={styles.home}>MasterMade</div>
-          <div className={styles.navigation}>
-            <div className={styles.about}>About</div>
-            <div className={styles.services}>Services</div>
-            <div className={styles.portfolio}>Portfolio</div>
-          </div>
-        </div>
+        Homepage
       </Page>
     );
   }

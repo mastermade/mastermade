@@ -1,3 +1,64 @@
-.layout {
-  /* placeholder */
+.tilepage {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
+
+.tile {
+  background: red;
+  color: #FFFFFF;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.home {
+  composes: tile;
+  width: 80%;
+  background: #03A9F4;
+}
+
+.navigation {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  transition: 1s;
+
+  &:hover {
+    width: 30%;
+  }
+}
+
+.about, .services, .portfolio {
+  composes: tile;
+  height: 33%;
+  transition: 1s;
+
+  &:hover {
+    height: 50%;
+  }
+}
+
+.about {
+  background: #009688;
+  height: 34%;
+}
+
+.services {
+  background: #E91E63;
+}
+
+.portfolio {
+  background: #F44336;
+}
+
