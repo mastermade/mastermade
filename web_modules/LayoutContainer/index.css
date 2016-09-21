@@ -11,26 +11,6 @@
   bottom: 0;
 }
 
-.tile {
-  background: red;
-  color: #FFFFFF;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-.home {
-  composes: tile;
-  width: 80%;
-  background: #03A9F4;
-  transition: 1s;
-
-  &:hover {
-    width: 100%;
-  }
-}
-
 .navigation {
   width: 20%;
   height: 100%;
@@ -46,34 +26,4 @@
   &.active {
     width: 900%;
   }
-}
-
-.about, .services, .portfolio {
-  composes: tile;
-  height: 33%;
-  transition: 1s;
-
-  &:hover {
-    height: 50%;
-  }
-
-  &.active {
-    background: red;
-    color: blue;
-
-    height: 200%;
-  }
-}
-
-.about {
-  background: #009688;
-  height: 34%;
-}
-
-.services {
-  background: #E91E63;
-}
-
-.portfolio {
-  background: #F44336;
 }

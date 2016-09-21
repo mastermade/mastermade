@@ -11,8 +11,7 @@ import * as _ from 'lodash';
 import './index.global.css';
 import styles from './index.css';
 
-import Header from '../Header';
-import Footer from '../Footer';
+import PageTile from '../PageTile';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -22,6 +21,9 @@ class Layout extends Component {
 
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    params: PropTypes.shape({
+      splat: PropTypes.string,
+    }),
   };
 
   static contextTypes = {
@@ -67,18 +69,14 @@ class Layout extends Component {
           <style>{ "@-ms-viewport { width: device-width; }" }</style>
 
           <div className={styles.tilepage}>
-            <div className={styles.home}><Link to={"/"}>MasterMade</Link></div>
+            <PageTile id="home" title="MasterMade" link="/" active={(activePage === '')}>
+              <p>MasterMade</p>
+            </PageTile>
             <div className={classNames(styles.navigation, { [styles.active]: (activePage !== '') })}>
               { _.map(pages, (page) => {
-                const className = classNames(styles[page.id], {
-                  [styles.active]: (activePage === page.id),
-                });
-
-                return (
-                  <div className={className}>
-                    <Link to={`/${page.id}/`}>{ page.title }</Link>
-                  </div>
-                );
+                const isActive = (activePage === page.id);
+                const contents = isActive ? this.props.children : null;
+                return (<PageTile {...page} active={isActive}>{contents}</PageTile>);
               }) }
             </div>
           </div>

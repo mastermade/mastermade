@@ -23,7 +23,7 @@ class Homepage extends Component {
 
     return (
       <Page {...this.props}>
-        Homepage
+        <BodyContainer>{ body }</BodyContainer>
       </Page>
     );
   }
