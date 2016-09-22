@@ -24,8 +24,6 @@ export default class PageTile extends Component {
 
     const contents = children || (<Link to={to}>{ title }</Link>);
 
-    console.log('children', children);
-
     return (
       <div className={className}>
         { contents }

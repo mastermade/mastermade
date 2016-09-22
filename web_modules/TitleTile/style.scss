@@ -1,0 +1,8 @@
+@import '../styles/variables';
+
+.content {
+    h1 {
+      @include font-heading();
+      font-size: 200%;
+    }
+}

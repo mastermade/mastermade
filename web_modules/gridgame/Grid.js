@@ -8,6 +8,8 @@ import chroma from 'chroma-js';
 
 import { step, setCursorDown, moveCursor, setCursorUp } from 'app/actions/gridgame';
 
+import styles from './style.scss';
+
 const Surface = ReactCanvas.Surface;
 const Gradient = ReactCanvas.Gradient;
 
@@ -145,7 +147,12 @@ class Grid extends Component {
     };
 
     return (
-      <div onMouseMove={mouseMove} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler}>
+      <div
+        className={styles.container}
+        onMouseMove={mouseMove}
+        onMouseDown={mouseDownHandler}
+        onMouseUp={mouseUpHandler}
+      >
         <Surface top={0} left={0} width={5000} height={5000}>
           { boxes }
           { hoverEffect }

@@ -12,6 +12,7 @@ import './index.global.css';
 import styles from './index.css';
 
 import PageTile from '../PageTile';
+import TitleTile from '../TitleTile';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -43,6 +44,8 @@ class Layout extends Component {
       { id: 'portfolio', title: 'Portfolio' },
     ];
 
+    const homeActive = (activePage === '');
+
     return (
       <MuiThemeProvider>
         <div className={styles.tile}>
@@ -69,8 +72,8 @@ class Layout extends Component {
           <style>{ "@-ms-viewport { width: device-width; }" }</style>
 
           <div className={styles.tilepage}>
-            <PageTile id="home" title="MasterMade" link="/" active={(activePage === '')}>
-              <p>MasterMade</p>
+            <PageTile id="home" title="MasterMade" link="/" active={homeActive}>
+              <TitleTile active={homeActive} />
             </PageTile>
             <div className={classNames(styles.navigation, { [styles.active]: (activePage !== '') })}>
               { _.map(pages, (page) => {
