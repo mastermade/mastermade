@@ -38,3 +38,8 @@ export function moveCursor(cell) {
   };
 }
 
+export function playPauseGame() {
+  return {
+    type: 'PLAY_PAUSE_GAME',
+  };
+}

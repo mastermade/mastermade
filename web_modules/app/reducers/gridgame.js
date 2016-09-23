@@ -11,6 +11,7 @@ const defaultState = {
           [3, 33], [3, 34], [3, 35]],
   hover: null,
   down: false,
+  paused: false,
 };
 
 function getKey(cell) {
@@ -43,7 +44,17 @@ const actions = {
       down: false,
     };
   },
+  'PLAY_PAUSE_GAME': (state, action) => {
+    return {
+      ...state,
+      paused: !state.paused,
+    };
+  },
   'GAME_STEP': (state, action) => {
+    if (state.paused || state.down) {
+      return state;
+    }
+
     const cells = {};
     const liveCells = {};
     const newCells = [];

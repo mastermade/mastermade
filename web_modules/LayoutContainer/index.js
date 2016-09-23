@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import * as _ from 'lodash';
 
+import { playPauseGame } from 'app/actions/gridgame';
+
 // Import global CSS before other components and their styles
 import './index.global.css';
 import styles from './index.css';
@@ -31,6 +33,19 @@ class Layout extends Component {
     metadata: PropTypes.object.isRequired,
   };
 
+  constructor() {
+    super();
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  handleKeyPress(evt) {
+    const { dispatch } = this.props;
+
+    if (evt.charCode === 32 || evt.charCode === 112) {
+      dispatch(playPauseGame());
+    }
+  }
+
   render() {
     const {
       pkg,
@@ -48,7 +63,7 @@ class Layout extends Component {
 
     return (
       <MuiThemeProvider>
-        <div className={styles.tile}>
+        <div onKeyPress={this.handleKeyPress} tabIndex="0">
           <Helmet
             meta={[
               {
@@ -89,4 +104,8 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+export default connect(
+  (state) => {
+    return {};
+  }
+)(Layout);

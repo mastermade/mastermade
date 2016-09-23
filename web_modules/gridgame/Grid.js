@@ -34,9 +34,7 @@ class Grid extends Component {
       if (diff >= 1000) {
         last = timestamp;
 
-        if (!this.props.game.down) {
-          this.props.dispatch(step());
-        }
+        this.props.dispatch(step());
       }
 
       this.frame = window.requestAnimationFrame(animator);
