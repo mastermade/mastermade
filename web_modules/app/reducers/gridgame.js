@@ -4,10 +4,10 @@ const gameHeight = 100;
 const gameWidth = 100;
 
 const defaultState = {
-  cells: { '3,3': { color: 0 }, '3,4': { color: 1 }, '3,5': { color: 0 } },
+  cells: {},
   hover: null,
   down: false,
-  paused: false,
+  paused: true,
 };
 
 function getKey(cell) {
@@ -16,11 +16,17 @@ function getKey(cell) {
 
 const actions = {
   'ADD_LIVE_CELL': (state, action) => {
+    const key = getKey(action.cell);
+
+    if (state.cells[key]) {
+      return state;
+    }
+
     return {
       ...state,
       cells: {
         ...state.cells,
-        [getKey(action.cell)]: { color: _.random(0, 3) },
+        [key]: { color: _.random(0, 2) },
       },
     };
   },
