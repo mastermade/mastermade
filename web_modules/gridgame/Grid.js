@@ -121,10 +121,13 @@ class Grid extends Component {
   render() {
     const { game: { cells, hover }, cellSize, dispatch } = this.props;
 
-    const boxes = _.map(cells, (cell) => {
+    const colors = chroma.scale(['black', 'blue', 'red']).colors(3);
+
+    const boxes = _.map(cells, (cell, key) => {
+      const coordinates = _.map(key.split(','), n => parseInt(n, 10));
       const style = {
-        ...this.getCellStyle(cell),
-        backgroundColor: '#333333',
+        ...this.getCellStyle(coordinates),
+        backgroundColor: colors[cell.color],
       };
 
       return (<Gradient style={style} />);

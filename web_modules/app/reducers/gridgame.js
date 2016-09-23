@@ -4,11 +4,7 @@ const gameHeight = 100;
 const gameWidth = 100;
 
 const defaultState = {
-  cells: [[3, 3], [3, 4], [3, 5],
-          [10, 3], [10, 4], [10, 5],
-          [19, 3], [19, 4], [19, 5],
-          [3, 13], [3, 14], [3, 15],
-          [3, 33], [3, 34], [3, 35]],
+  cells: { '3,3': { color: 0 }, '3,4': { color: 1 }, '3,5': { color: 0 } },
   hover: null,
   down: false,
   paused: false,
@@ -22,7 +18,10 @@ const actions = {
   'ADD_LIVE_CELL': (state, action) => {
     return {
       ...state,
-      cells: _.uniq([...state.cells, action.cell]),
+      cells: {
+        ...state.cells,
+        [getKey(action.cell)]: { color: _.random(0, 3) },
+      },
     };
   },
   'MOVE_CURSOR': (state, action) => {
@@ -57,46 +56,56 @@ const actions = {
 
     const cells = {};
     const liveCells = {};
-    const newCells = [];
+    const newCells = {};
 
-    const addNeighbor = (cell) => {
+    const addNeighbor = (cell, parent) => {
       const key = getKey(cell);
+
       if (cells[key] === undefined) {
-        cells[key] = 0;
+        cells[key] = {};
       }
 
-      cells[key] += 1;
+      if (cells[key][parent] === undefined) {
+        cells[key][parent] = 0;
+      }
+
+      cells[key][parent] += 1;
     };
 
-    _.each(state.cells, (cell) => {
-      const x = cell[0];
-      const y = cell[1];
+    _.each(state.cells, (cell, key) => {
+      const coordinates = _.map(key.split(','), n => parseInt(n, 10));
+      const x = coordinates[0];
+      const y = coordinates[1];
+      const cellType = cell.color;
 
-      liveCells[getKey(cell)] = true;
+      liveCells[getKey(coordinates)] = true;
 
-      const hasTop = cell[1] > 0;
-      const hasLeft = cell[0] > 0;
-      const hasBottom = cell[1] < gameHeight;
-      const hasRight = cell[0] < gameWidth;
+      const hasTop = y > 0;
+      const hasBottom = y < gameHeight;
+      const hasLeft = x > 0;
+      const hasRight = x < gameWidth;
 
-      if (hasTop && hasLeft) addNeighbor([x - 1, y - 1]);
-      if (hasTop) addNeighbor([x, y - 1]);
-      if (hasTop && hasRight) addNeighbor([x + 1, y - 1]);
+      if (hasTop && hasLeft) addNeighbor([x - 1, y - 1], cellType);
+      if (hasTop) addNeighbor([x, y - 1], cellType);
+      if (hasTop && hasRight) addNeighbor([x + 1, y - 1], cellType);
 
-      if (hasLeft) addNeighbor([x - 1, y]);
-      if (hasRight) addNeighbor([x + 1, y]);
+      if (hasLeft) addNeighbor([x - 1, y], cellType);
+      if (hasRight) addNeighbor([x + 1, y], cellType);
 
-      if (hasBottom && hasLeft) addNeighbor([x - 1, y + 1]);
-      if (hasBottom) addNeighbor([x, y + 1]);
-      if (hasBottom && hasRight) addNeighbor([x + 1, y + 1]);
+      if (hasBottom && hasLeft) addNeighbor([x - 1, y + 1], cellType);
+      if (hasBottom) addNeighbor([x, y + 1], cellType);
+      if (hasBottom && hasRight) addNeighbor([x + 1, y + 1], cellType);
     });
 
-    _.each(cells, (neighborCount, key) => {
+    _.each(cells, (neighbors, key) => {
       const isAlive = liveCells[key];
+
+      const neighborCount = _.sum(_.values(neighbors));
+      const newType = _.maxBy(_.keys(neighbors), cellType => neighbors[cellType]);
 
       if ((isAlive && (neighborCount === 2 || neighborCount === 3)) ||
           (!isAlive && (neighborCount === 3))) {
-        newCells.push(_.map(key.split(','), n => parseInt(n, 10)));
+        newCells[key] = { color: parseInt(newType, 10) };
       }
     });
 

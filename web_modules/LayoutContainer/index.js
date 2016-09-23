@@ -27,6 +27,7 @@ class Layout extends Component {
     params: PropTypes.shape({
       splat: PropTypes.string,
     }),
+    dispatch: PropTypes.func,
   };
 
   static contextTypes = {
