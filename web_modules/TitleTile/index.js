@@ -4,7 +4,8 @@ import classNames from 'classnames';
 
 import styles from './style.scss';
 
-import Grid from '../gridgame/Grid';
+const isBrowser = typeof window !== 'undefined';
+const Grid = isBrowser ? require('../gridgame/Grid').default : null;
 
 export default class TitleTile extends Component {
   static propTypes = {
@@ -14,14 +15,18 @@ export default class TitleTile extends Component {
   render() {
     const { active } = this.props;
 
+    const background = isBrowser ? (<Grid cellSize={10} />) : null;
+
     const className = classNames(styles.content, {
       [styles.active]: active,
+      [styles.inactive]: !active,
     });
 
     return (
       <div className={className}>
         <h1>MasterMade</h1>
-        <Grid />
+        { background }
+        <Link to="/">&nbsp;</Link>
       </div>
     );
   }

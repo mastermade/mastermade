@@ -147,16 +147,21 @@ class Grid extends Component {
     };
 
     return (
-      <div
-        className={styles.container}
-        onMouseMove={mouseMove}
-        onMouseDown={mouseDownHandler}
-        onMouseUp={mouseUpHandler}
-      >
-        <Surface top={0} left={0} width={5000} height={5000}>
-          { boxes }
-          { hoverEffect }
-        </Surface>
+      <div>
+        <div
+          className={styles.proxy}
+          onMouseMove={mouseMove}
+          onMouseDown={mouseDownHandler}
+          onMouseUp={mouseUpHandler}
+        />
+        <div
+          className={styles.container}
+        >
+          <Surface top={0} left={0} width={5000} height={5000}>
+            { boxes }
+            { hoverEffect }
+          </Surface>
+        </div>
       </div>
     );
   }

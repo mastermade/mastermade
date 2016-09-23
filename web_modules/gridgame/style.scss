@@ -1,6 +1,19 @@
+.container, .proxy {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
 .container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -10;
+  z-index: 3;
+}
+
+.proxy {
+  z-index: 10;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5000px;
+  height: 5000px;
 }
