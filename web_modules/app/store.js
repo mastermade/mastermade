@@ -5,13 +5,21 @@ import createStore from 'phenomic/lib/redux/createStore';
 import * as phenomicReducers from 'phenomic/lib/redux/modules';
 import * as reducers from 'app/reducers';
 
-const store = createStore(
+import isBrowser from 'app/isBrowser';
+
+const devTools = (isBrowser && window.devToolsExtension) && window.devToolsExtension();
+
+console.log('tools', devTools);
+
+const storeCreator = devTools ? devTools(createStore) : createStore;
+
+const store = storeCreator(
   // here we combine phenomic required reducers and your custom ones
   combineReducers({
     ...phenomicReducers,
     ...reducers,
   }),
-  { ...(typeof window !== 'undefined') && window.__INITIAL_STATE__ },
+  { ...(typeof window !== 'undefined') && window.__INITIAL_STATE__ }
 );
 
 // webpack hot loading
