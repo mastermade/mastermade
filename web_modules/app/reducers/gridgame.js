@@ -15,6 +15,30 @@ function getKey(cell) {
 }
 
 const actions = {
+  'ADD_SHAPE': (state, action) => {
+    const rows = action.shape.split('\n');
+
+    const newCells = _.fromPairs(_.filter(_.flatten(_.map(rows, (row, y) => {
+      const cells = row.split('');
+
+      return _.map(cells, (text, x) => {
+        if (text === 'O') {
+          const coordinates = [action.x + x, action.y + y];
+          return [getKey(coordinates), { color: action.color }];
+        }
+
+        return null;
+      });
+    }))));
+
+    return {
+      ...state,
+      cells: {
+        ...state.cells,
+        ...newCells,
+      },
+    };
+  },
   'ADD_LIVE_CELL': (state, action) => {
     const key = getKey(action.cell);
 

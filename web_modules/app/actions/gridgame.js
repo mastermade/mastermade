@@ -43,3 +43,13 @@ export function playPauseGame() {
     type: 'PLAY_PAUSE_GAME',
   };
 }
+
+export function addShape(shape, x, y, color) {
+  return {
+    type: 'ADD_SHAPE',
+    shape,
+    x,
+    y,
+    color,
+  };
+}

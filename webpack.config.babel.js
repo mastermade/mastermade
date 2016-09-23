@@ -122,6 +122,12 @@ export const makeConfig = (config = {}) => {
         {
           test: /\.svg$/,
           loader: 'raw-loader',
+        },
+
+        // plaintext loader
+        {
+          test: /\.txt$/,
+          loader: 'raw-loader',
         }
       ],
       postLoaders: [

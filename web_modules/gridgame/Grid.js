@@ -6,9 +6,10 @@ import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import chroma from 'chroma-js';
 
-import { step, setCursorDown, moveCursor, setCursorUp } from 'app/actions/gridgame';
+import { step, setCursorDown, moveCursor, setCursorUp, addShape } from 'app/actions/gridgame';
 
 import styles from './style.scss';
+import GosperGun from './shapes/gosper.txt';
 
 const Surface = ReactCanvas.Surface;
 const Gradient = ReactCanvas.Gradient;
@@ -27,6 +28,8 @@ class Grid extends Component {
   };
 
   componentDidMount() {
+    const { dispatch } = this.props;
+
     let start;
     let last = 0;
     const animator = (timestamp) => {
@@ -34,13 +37,15 @@ class Grid extends Component {
       if (diff >= 1000) {
         last = timestamp;
 
-        this.props.dispatch(step());
+        dispatch(step());
       }
 
       this.frame = window.requestAnimationFrame(animator);
     };
 
     this.frame = window.requestAnimationFrame(animator);
+
+    dispatch(addShape(GosperGun, 1, 1, 1));
   }
 
   componentWillUnmount() {
