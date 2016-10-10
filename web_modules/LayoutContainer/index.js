@@ -85,7 +85,7 @@ class Layout extends Component {
               name: 'viewport', content: 'width=device-width, initial-scale=1',
             }]}
           />
-          <style>{ "@-ms-viewport { width: device-width; }" }</style>
+          <style>{ '@-ms-viewport { width: device-width; }' }</style>
 
           <div className={styles.tilepage}>
             <PageTile id="home" title="MasterMade" link="/" active={homeActive}>
