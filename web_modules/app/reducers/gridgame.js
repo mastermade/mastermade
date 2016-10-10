@@ -7,7 +7,7 @@ const defaultState = {
   cells: {},
   hover: null,
   down: false,
-  paused: true,
+  paused: false,
 };
 
 function getKey(cell) {

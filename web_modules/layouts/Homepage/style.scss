@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .tilepage {
   display: -ms-flex;
   display: -webkit-flex;
@@ -9,21 +11,6 @@
   top: 0;
   right: 0;
   bottom: 0;
-}
-
-.tile {
-  background: red;
-  color: #FFFFFF;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-.home {
-  composes: tile;
-  width: 80%;
-  background: #03A9F4;
 }
 
 .navigation {
@@ -39,26 +26,29 @@
   }
 }
 
-.about, .services, .portfolio {
-  composes: tile;
-  height: 33%;
-  transition: 1s;
+.page-contents {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
 
-  &:hover {
-    height: 50%;
+.body-content {
+  padding: 20px;
+  text-align: left;
+  color: $body-text;
+
+  a:global(.phenomic-HeadingAnchor) {
+    display: none;
+  }
+
+  a {
+    color: #03A9F4;
+
+    &:hover {
+      color: #01579B;
+    }
   }
 }
-
-.about {
-  background: #009688;
-  height: 34%;
-}
-
-.services {
-  background: #E91E63;
-}
-
-.portfolio {
-  background: #F44336;
-}
-

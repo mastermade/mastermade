@@ -57,7 +57,7 @@ class Layout extends Component {
     const pages = [
       { id: 'about', title: 'About' },
       { id: 'services', title: 'Services' },
-      { id: 'portfolio', title: 'Portfolio' },
+      { id: 'contact', title: 'Contact' },
     ];
 
     const homeActive = (activePage === '');

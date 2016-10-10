@@ -22,7 +22,7 @@ export default class PageTile extends Component {
 
     const to = link || `/${id}/`;
 
-    const contents = children || (<Link to={to}>{ title }</Link>);
+    const contents = children || (<Link className={styles.pagelink} to={to}>{ title }</Link>);
 
     return (
       <div className={className}>

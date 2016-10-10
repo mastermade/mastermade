@@ -1,6 +1,4 @@
 .tile {
-  background: red;
-  color: #FFFFFF;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -18,32 +16,52 @@
   }
 }
 
-.about, .services, .portfolio {
+.about, .services, .portfolio, .contact {
   composes: tile;
   height: 33%;
   transition: 1s;
+
+  a.pagelink {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    text-decoration: none;
+  }
 
   &:hover {
     height: 50%;
   }
 
   &.active {
-    background: red;
-    color: blue;
-
     height: 200%;
+    position: relative;
   }
 }
 
 .about {
   background: #009688;
   height: 34%;
+
+  &.active {
+    background: #F3F3F3;
+  }
 }
 
 .services {
   background: #E91E63;
+
+  &.active {
+    background: #FCE4EC;
+  }
 }
 
-.portfolio {
+.portfolio, .contact {
   background: #F44336;
+
+  &.active {
+    background: #FFEBEE;
+  }
 }

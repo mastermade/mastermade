@@ -23,7 +23,13 @@ class Homepage extends Component {
 
     return (
       <Page {...this.props}>
-        <BodyContainer>{ body }</BodyContainer>
+        <div className={styles['page-contents']}>
+          <div className={styles['body-content']}>
+            <BodyContainer>
+              { body }
+            </BodyContainer>
+          </div>
+        </div>
       </Page>
     );
   }
